@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 app = Flask(__name__)
 
-classes = ['HIGHLY INFECTIOUS', 'NORMAL', 'INFECTIOUS',]  
+classes = ['TUBERCULOSIS', 'HEALTHY', 'PNEUMONIA',] 
 model_path = 'models/xray_lung_disease_detection_model.pth'
 model = ConvNet(num_classes=len(classes))
 checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
