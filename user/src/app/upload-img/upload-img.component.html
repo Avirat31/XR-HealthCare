@@ -1,0 +1,397 @@
+<div class="main-container">
+    <div class="manage-initial-height">
+        <div class="img-container">
+            <h2 style="font-weight: bold;">Let's Start!</h2>
+            <p>Add photo to make scan. You can upload photo from the device or take a photo with camera (available for
+                mobiles)</p>
+            <div class="main-section">
+                <div class="img" id="img">
+                    <div>
+                        <div [innerHtml]='msg' *ngIf="msg" style="color: red;">{{ msg }}</div>
+                    </div>
+                    <form (submit)="onSubmit()">
+                        <p class="upload-image">
+                            <i class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                            <br>
+                            Upload Image
+                            <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                        </p>
+                        <div class="show-img" *ngIf="show">
+                            <img [src]="selectedImage" *ngIf="selectedFile" />
+                            <div *ngIf="selectedImage" class="centertext" style="color: #2ad72a;">Successfully<br>Uploaded!
+                            </div>
+                        </div>
+                        <input class="btn" *ngIf="selectedFile && show" type="submit" value="Submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="show" *ngIf="!show">
+            <p style="text-align: center; padding-top: 30px;"><strong
+                    style="text-decoration: underline; color: red;">Note:</strong> Rely on the results only if the
+                symptoms align.
+            </p>
+            <div class="uploaded-img">
+                <img [src]="selectedImage" />
+                <button style=" margin: 0px 180px 0 90px; 
+                background-color: rgb(93, 121, 198); 
+                border-color: rgb(93, 121, 198);
+                border-radius: 30px;
+                font-size: 18px;
+                width: 180px;
+                padding: 10px 20px;" (click)="generateReport()">Create Report &#8594;</button>
+            </div>
+            <div class="res">
+                <h4>Detected Disease : <strong style="text-decoration: underline;">{{ response }}</strong></h4>
+                <!-- <h4><strong style="text-decoration: underline;">No Disease Detected!</strong></h4> -->
+            </div>
+            <br>
+            <div style="display: flex; justify-content: center;" class="button-div">
+                <button (click)="showDetail()">Description</button>
+                <button (click)="showRecommend()">Recommendations</button>
+            </div>
+
+            <div *ngIf="detail" class="details">
+                <strong style="font-size: 18px;">Description:</strong>
+                <br>
+                <div *ngIf="res==='AK'">
+                    Pneumonia is a common respiratory infection that affects the lungs. It can range from mild to severe and may require medical attention depending on the severity of symptoms and the individual's overall health.
+
+                    Pneumonia can be caused by various infectious agents, including bacteria, viruses, fungi, and even certain chemicals or aspiration of food or liquids into the lungs.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Symptoms:</strong>
+                    <br>
+                    Cough: A persistent cough, often accompanied by mucus production.
+                    <br>
+                    Fever: High fever, sweating, and chills are common symptoms of pneumonia.
+                    <br>
+                    Difficulty Breathing: Shortness of breath or rapid breathing, especially with exertion.
+                    <br>
+                    Chest Pain: Chest pain that worsens with deep breathing or coughing.
+                    <br>
+                    Fatigue: Feeling tired or weak, often accompanied by a general sense of malaise.
+                    <br>
+                    Other Symptoms: Nausea, vomiting, and headache may also occur in some 
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Causes:</strong>
+                    <br>
+                    Bacterial Pneumonia: Streptococcus pneumoniae is the most common bacterial cause of pneumonia, but other bacteria such as Haemophilus influenzae and Mycoplasma pneumoniae can also cause the infection.
+                    <br>
+                    Viral Pneumonia: Influenza viruses, respiratory syncytial virus (RSV), and adenoviruses are common viral causes of pneumonia, particularly in children and older adults.
+                    <br>
+                    Fungal Pneumonia: Fungal pneumonia is less common but may occur in individuals with weakened immune systems or certain underlying health conditions.
+                    <br>
+                    Pneumonia is often acquired through respiratory droplets from coughing or sneezing by an infected person. It can also develop as a complication of other respiratory infections or illnesses.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Treatment:</strong>   
+                    <br>
+                    Antibiotics: If bacterial pneumonia is suspected or diagnosed, antibiotics are prescribed to target the specific bacterial infection. It's essential to complete the full course of antibiotics as prescribed by a healthcare provider.
+                    <br>
+                    Antiviral Medications: For viral pneumonia, antiviral medications may be prescribed to help reduce symptoms and speed up recovery.
+                    <br>
+                    Supportive Care: Rest, hydration, and over-the-counter medications such as pain relievers or fever reducers may help alleviate symptoms and support the body's immune response.
+                    <br>
+                    Hospitalization: In severe cases of pneumonia, hospitalization may be necessary for close monitoring, intravenous antibiotics, oxygen therapy, or respiratory support.
+                    <br>
+                    <br>
+                    Preventing pneumonia is possible through vaccination, good hygiene practices, and avoiding exposure to known risk factors such as smoking or environmental pollutants.
+                </div>
+                
+
+                <div *ngIf="res==='BCC'">
+                    Congratulations! Your chest X-ray appears to be normal and healthy according to our analysis. This is great news for your respiratory health!
+
+                    It's essential to celebrate these moments of good health and take proactive steps to maintain it
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Condition:</strong>
+                    <br>
+                    Stay Active: Regular physical activity can help keep your lungs strong and healthy. Aim for at least 30 minutes of moderate exercise most days of the week.
+
+                    Avoid Smoking: If you smoke, consider quitting. Smoking damages the lungs and increases the risk of developing respiratory diseases.
+
+                    Eat a Balanced Diet: A diet rich in fruits, vegetables, whole grains, and lean proteins provides essential nutrients that support lung health.
+
+                    Practice Good Hygiene: Wash your hands frequently to prevent the spread of respiratory infections, such as the common cold and flu.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Suggestion:</strong>
+                    <br>
+                    Remember, regular check-ups with your healthcare provider are also crucial for maintaining overall health and catching any potential issues early. If you have any concerns or questions about your respiratory health, don't hesitate to consult with a medical professional.
+
+                    
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Best wishes</strong>
+                    <br>
+                    Stay healthy and keep up the good work!!!                    
+                </div>
+
+                <!-- <div *ngIf="res==='BK-lL'">
+                    Benign keratosis-like lesions refer to a group of skin abnormalities or growths that resemble
+                    keratosis, which is the excessive growth of keratin, a protein found in the skin, hair, and
+                    nails.
+                    These lesions are generally non-cancerous (benign), but they can sometimes appear similar to
+                    more
+                    serious skin conditions, such as actinic keratosis or even skin cancer. It's essential to
+                    distinguish between benign keratosis-like lesions and potentially harmful conditions to ensure
+                    appropriate diagnosis and treatment.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Appearance:</strong>
+                    <br>
+                    The appearance of benign keratosis-like lesions can be quite diverse. These lesions may have a
+                    rough, scaly, or slightly raised texture. Some may feel flat and firm. They can range in color
+                    from
+                    flesh-colored to pink, red, brown, or black, depending on the specific type of lesion. These
+                    lesions
+                    may appear as small papules (bumps), plaques (flat patches), or nodules (larger raised bumps).
+                    They
+                    can vary in size from a few millimeters to a centimeter or more.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Location:</strong>
+                    <br>
+                    The location of benign keratosis-like lesions can vary widely, and they can appear on various
+                    parts
+                    of the body. Some common locations include face, trunk & torso, genital area, scalp and
+                    extremities.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Cause:</strong>
+                    <br>
+                    The causes of benign keratosis-like lesions can vary depending on the specific type of growth.
+                </div> -->
+
+                <div *ngIf="res==='DMF'">
+                    Tuberculosis (TB) is a bacterial infection caused by Mycobacterium tuberculosis. It primarily affects the lungs but can also target other parts of the body such as the kidneys, spine, and brain. Tuberculosis remains a significant global health concern, particularly in regions with limited access to healthcare resources.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Symptoms:</strong>
+                    <br>
+                    Fever: Low-grade fever, especially in the late afternoon or evening.
+                    <br>
+                    Persistent Cough: A cough that lasts for more than two weeks, often producing thick, bloody, or discolored sputum.
+                    <br>
+                    Fatigue: Persistent fatigue, weakness, and lack of energy.
+                    <br>
+                    Night Sweats: Profuse sweating, particularly during sleep.
+                    <br>
+                    Chest Pain: Pain or discomfort in the chest, especially while coughing or breathing deeply.
+                    <br>
+                    Weight Loss: Unexplained weight loss and loss of appetite.
+                    <br>
+                    Other Symptoms: Some individuals may experience shortness of breath, coughing up blood, or swollen lymph nodes.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Causes:</strong>
+                    <br>
+                    Tuberculosis is primarily spread through the air when an infected individual coughs, sneezes, or talks, releasing droplets containing the bacteria into the air.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Treatment:</strong>
+                    <br>
+                    Treatment for tuberculosis typically involves a combination of antibiotics taken over several months. The most commonly used medications include isoniazid, rifampin, ethambutol, and pyrazinamide. It's essential to complete the full course of treatment as prescribed by a healthcare provider to prevent the development of drug-resistant tuberculosis.
+                    <br>
+                    In addition to medication, supportive care may be provided to alleviate symptoms and promote recovery. This may include rest, proper nutrition, and monitoring for adverse effects of medication.
+                </div>
+
+                <!-- <div *ngIf="res==='MN'">
+                    Melanocytic nevi, commonly referred to as moles, are benign (non-cancerous) growths on the skin.
+                    They are composed of melanocytes, the pigment-producing cells in the skin, and can vary in size,
+                    color, and appearance. Melanocytic nevi are typically harmless, but they can sometimes change
+                    over
+                    time or exhibit atypical features that may require medical evaluation.
+                    <br>
+                    Melanocytic nevi, commonly known as moles, are benign skin growths that develop when melanocytes
+                    (pigment-producing cells) cluster together. Most moles are harmless, but it's important to
+                    monitor
+                    them for changes that could indicate skin cancer (melanoma).
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Apperance:</strong>
+                    <br>
+                    Melanocytic nevi can appear in various forms, including:
+                    <ul>
+                        <li>Common Moles: These are small to medium-sized, round or oval-shaped lesions with a
+                            uniform
+                            color, typically ranging from tan to brown. They can be flat or slightly raised and have
+                            well-defined borders.</li>
+                        <li>Dysplastic Nevi (Atypical Moles): Dysplastic nevi are larger and irregularly shaped
+                            moles
+                            with uneven coloring (variations of brown, tan, red, pink, or other colors). They may
+                            have
+                            an irregular border and exhibit some features that resemble melanoma, a type of skin
+                            cancer.
+                        </li>
+                        <li>Congenital Moles: These moles are present at birth or develop shortly after birth. They
+                            can
+                            vary in size and may be pigmented or non-pigmented (flesh-colored).</li>
+                    </ul>
+
+                    <strong style="font-size: 18px;">Location:</strong>
+                    <br>
+                    Melanocytic nevi can appear anywhere on the skin, including the face, neck, arms, legs, and
+                    torso.
+                    They can also develop on mucous membranes (e.g., inside the mouth) and the scalp.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Cause:</strong>
+                    <br>
+                    Moles can develop at any age but are more likely to appear during childhood and adolescence.
+                    They
+                    often change in appearance and size over time, especially during hormonal changes, such as
+                    puberty
+                    and pregnancy.
+                </div> -->
+
+                <!-- <div *ngIf="res==='PGH'">
+                    Pyogenic granuloma, also known as lobular capillary hemangioma, is a benign vascular growth that
+                    typically appears as a reddish or purplish bump on the skin or mucous membranes (the moist
+                    tissues
+                    lining various body cavities). Despite the term "pyogenic," which implies the presence of pus,
+                    pyogenic granulomas are not related to infection. Instead, they are characterized by an
+                    overgrowth
+                    of blood vessels in the affected area.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Appearance:</strong>
+                    <br>
+                    Pyogenic granulomas often present as small, round or oval-shaped, raised nodules or bumps. They
+                    can vary in size from a few millimeters to a centimeter or more. The color of the lesion is
+                    typically red or pink, but it can also appear purplish due to the abundance of blood vessels.
+                    These
+                    growths may bleed easily and can develop a crust on the surface.
+                    <br>But pyogenic granulomas are rarely related to infection, and they don’t generally contain
+                    white
+                    blood cells or pus.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Lcation:</strong>
+                    <br>
+                    Pyogenic granulomas can occur on various parts of the body, but they are most commonly found on
+                    the face, neck, hands, fingers, and oral cavity (gums, lips, tongue). They can also develop at
+                    the
+                    site of a recent injury or trauma.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Cause:</strong>
+                    <br>
+                    The exact cause of pyogenic granulomas is not always clear, but they often develop in response
+                    to
+                    minor trauma, such as a scratch, insect bite, injury, hormonal changes (as seen in pregnancy),
+                    or
+                    certain medications. These factors can trigger an abnormal response in the blood vessels,
+                    leading to
+                    the formation of the granuloma.
+                </div> -->
+
+                <!-- <div *ngIf="res==='MLNM'">
+                    Melanoma is a type of skin cancer that originates in melanocytes, the pigment-producing cells in
+                    the
+                    skin. It is one of the most aggressive forms of skin cancer and has the potential to spread to
+                    other
+                    parts of the body if not detected and treated early. Melanoma is less common than other skin
+                    cancers, such as basal cell carcinoma and squamous cell carcinoma, but it is much more likely to
+                    metastasize (spread to other organs), making early diagnosis and intervention critical.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Apperance:</strong>
+                    <br>
+                    Melanoma can appear in various ways, but it often presents as a new, unusual, or changing mole.
+                    The
+                    ABCDE rule can help identify suspicious features:
+                    <ul>
+                        <li>A: Asymmetry (one half of the mole does not match the other).</li>
+                        <li>B: Border irregularity (edges are not well-defined).</li>
+                        <li>C: Color variation (different colors within the same mole).</li>
+                        <li>D: Diameter (greater than 6 millimeters).</li>
+                        <li>E: Evolution (changes in size, shape, or other characteristics).</li>
+                        However, not all melanomas follow these criteria, and some may have no pigment, making them
+                        pink or
+                        flesh-colored.
+                    </ul>
+                    <strong style="font-size: 18px;">Location:</strong>
+                    <br>
+                    Melanoma can develop anywhere on the skin, including areas not exposed to the sun. In men,
+                    it is most commonly found on the chest and back, while in women, it often occurs on the legs.
+                    <br>
+                    <br>
+                    <strong style="font-size: 18px;">Causes:</strong>
+                    <br>
+                    Melanoma is primarily caused by exposure to ultraviolet (UV) radiation from the sun, tanning
+                    beds,
+                    or other sources. UV radiation can damage the DNA in melanocytes, leading to the development of
+                    cancerous cells.
+                </div> -->
+            </div>
+            <div *ngIf="recommend" class="recommend">
+                <strong style="font-size: 18px;">Recommendations:</strong>
+                <br>
+
+            </div>
+
+            <div *ngIf="report" class="report">
+                <h3 style="font-weight: bold;">Report Generation</h3>
+                <h6>Fill details to generate report</h6>
+                <form #questionForm="ngForm" (ngSubmit)="generatePDF()">
+                    <div class="form-group justify-center">
+                        <label for="description"><p>Name:</p></label>
+                        <input type="text" id="duration" placeholder="Enter Your Name" [(ngModel)]="questions[1].answer" name="duration">
+                    </div>
+                    <div class="form-group justify-center">
+                        <label for="description"><p>Age:</p></label>
+                        <input type="number" id="duration" placeholder="Enter your age" [(ngModel)]="questions[2].answer" name="duration">
+                    </div>
+                    <div class="form-group justify-center">
+                        <label for="description"><p>Gender:</p></label>
+                        <input type="text" id="duration" [(ngModel)]="questions[3].answer" name="duration">
+                    </div>
+                    <div class="form-group justify-center">
+                        <label for="description"><p>Blood-group:</p></label>
+                        <input type="text" id="duration" [(ngModel)]="questions[4].answer" name="duration">
+                    </div>
+
+                    <div class="form-group justify-center">
+                        <label for="description"><p>Skin-type: </p></label>
+                        <input type="text" id="duration" [(ngModel)]="questions[5].answer" name="duration">
+                    </div>
+
+                    <div class="form-group">
+                        <p>Choose Symptoms:</p>
+                        <div *ngFor="let option of questions[0].options; let j = index">
+                            <label class="options">
+                                <input type="checkbox" name="q0_option{{ j }}"
+                                    [(ngModel)]="questions[0].options[j].selected" />
+                                {{ option.text }}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration"><p>How long have you been experiencing these symptoms:</p></label>
+                        <input type="text" id="duration" [(ngModel)]="questions[6].answer" name="duration">
+                    </div>
+
+                    <div class="form-group description-textarea">
+                        <label for="description"><p>Provide a brief description of your condition:</p></label>
+                        <br>
+                        <textarea id="description" [(ngModel)]="questions[7].answer" name="description"></textarea>
+                    </div>
+
+                    <button style=" margin: 20px 0; 
+                    background-color: rgb(93, 121, 198); 
+                    border-color: rgb(93, 121, 198);
+                    border-radius: 30px;
+                    font-size: 18px;
+                    padding: 10px 12px;" type="submit">Generate PDF</button>
+                </form>
+            </div>
+            <!-- <button  *ngIf="report" class="connect-Dr" (click)="meetDoctor()">Consult to a Doctor</button> -->
+
+        </div>
+    </div>
+</div>

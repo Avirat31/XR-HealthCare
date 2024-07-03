@@ -1,0 +1,36 @@
+<div class="meetDoctor-container">
+  <div class="main-title">
+    <h1>Consult to Doctor</h1>
+  </div>
+
+  <div class="search-section">
+    <input
+      type="text"
+      placeholder="Search doctors..."
+      [(ngModel)]="searchText"
+    />
+    <select [(ngModel)]="selectedFilter">
+      <option value="name">Name</option>
+      <option value="rating">Rating</option>
+      <option value="experience">Experience</option>
+    </select>
+    <button class="search-button" (click)="searchDoctors()">Search</button>
+  </div>
+
+  <div class="doctor-list-container">
+    <div *ngFor="let doctor of doctors" class="doctor-card">
+        
+      <img [src]= "doctor.picture" alt="Doctor Image" />
+      <div class="doctor-details">
+        <h3>{{ doctor.name }}</h3>
+        <p class="specialization">
+          Specialization: {{ doctor.specialization }}
+        </p>
+        <p>Experience: {{ doctor.experience }} years</p>
+        <p>Price: Rs.{{ doctor.price }}</p>
+        <p>Rating: {{ doctor.rating }}/5</p>
+        <button class="consult-button btn-card">Consult Now</button>
+      </div>
+    </div>
+  </div>
+</div>
